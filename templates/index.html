@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de QR Code</title>
+    <script>
+        function showFields() {
+            let selection = document.getElementById("type").value;
+            let fields = document.getElementsByClassName("field");
+            for (let field of fields) {
+                field.style.display = "none";
+            }
+            document.getElementById(selection).style.display = "block";
+        }
+    </script>
+</head>
+<body>
+    <h1>Gerador de QR Code</h1>
+    <form action="/generate_qr" method="post">
+        <label for="type">Escolha o tipo de QR Code:</label>
+        <select id="type" name="type" onchange="showFields()" required>
+            <option value="url">URL</option>
+            <option value="vcard">vCard</option>
+            <option value="text">Text</option>
+            <option value="email">Email</option>
+            <option value="sms">SMS</option>
+            <option value="wifi">WiFi</option>
+            <option value="bitcoin">Bitcoin</option>
+            <option value="twitter">Twitter</option>
+            <option value="facebook">Facebook</option>
+            <option value="pdf">PDF</option>
+            <option value="mp3">MP3</option>
+        </select>
+
+        <div id="url" class="field" style="display:none">
+            <label for="url_input">URL:</label>
+            <input type="text" id="url_input" name="url_input">
+        </div>
+
+        <div id="vcard" class="field" style="display:none">
+            <label for="vcard_name">Nome:</label>
+            <input type="text" id="vcard_name" name="vcard_name">
+            <label for="vcard_email">Email:</label>
+            <input type="text" id="vcard_email" name="vcard_email">
+            <label for="vcard_phone">Telefone:</label>
+            <input type="text" id="vcard_phone" name="vcard_phone">
+        </div>
+
+        <div id="text" class="field" style="display:none">
+            <label for="text_input">Texto:</label>
+            <textarea id="text_input" name="text_input"></textarea>
+        </div>
+
+        <div id="email" class="field" style="display:none">
+            <label for="email_address">Endereço de Email:</label>
+            <input type="email" id="email_address" name="email_address">
+            <label for="email_subject">Assunto:</label>
+            <input type="text" id="email_subject" name="email_subject">
+            <label for="email_body">Corpo:</label>
+            <textarea id="email_body" name="email_body"></textarea>
+        </div>
+
+        <div id="sms" class="field" style="display:none">
+            <label for="sms_number">Número:</label>
+            <input type="text" id="sms_number" name="sms_number">
+            <label for="sms_message">Messagem:</label>
+            <textarea id="sms_message" name="sms_message"></textarea>
+        </div>
+
+        <div id="wifi" class="field" style="display:none">
+            <label for="wifi_ssid">SSID:</label>
+            <input type="text" id="wifi_ssid" name="wifi_ssid">
+            <label for="wifi_password">Senha:</label>
+            <input type="text" id="wifi_password" name="wifi_password">
+            <label for="wifi_encryption">Encriptação:</label>
+            <select id="wifi_encryption" name="wifi_encryption">
+                <option value="WEP">WEP</option>
+                <option value="WPA">WPA/WPA2</option>
+                <option value="nopass">Sem Senha</option>
+            </select>
+        </div>
+
+        <div id="bitcoin" class="field" style="display:none">
+            <label for="bitcoin_address">Endereço Bitcoin:</label>
+            <input type="text" id="bitcoin_address" name="bitcoin_address">
+            <label for="bitcoin_amount">Quantia:</label>
+            <input type="text" id="bitcoin_amount" name="bitcoin_amount">
+        </div>
+
+        <div id="twitter" class="field" style="display:none">
+            <label for="twitter_username">Conta no Twitter:</label>
+            <input type="text" id="twitter_username" name="twitter_username">
+            <label for="twitter_tweet">Tweet:</label>
+            <textarea id="twitter_tweet" name="twitter_tweet"></textarea>
+        </div>
+
+        <div id="facebook" class="field" style="display:none">
+            <label for="facebook_profile">Perfil no Facebook:</label>
+            <input type="text" id="facebook_profile" name="facebook_profile">
+        </div>
+
+        <div id="pdf" class="field" style="display:none">
+            <label for="pdf_url">URL do PDF:</label>
+            <input type="text" id="pdf_url" name="pdf_url">
+        </div>
+
+        <div id="mp3" class="field" style="display:none">
+            <label for="mp3_url">URL do MP3:</label>
+            <input type="text" id="mp3_url" name="mp3_url">
+        </div>
+
+        <label for="resolution">Selecionar resolução:</label>
+        <select id="resolution" name="resolution" required>
+            <option value="72">72 DPI</option>
+            <option value="100">100 DPI</option>
+            <option value="300">300 DPI</option>
+        </select>
+
+        <button type="submit">Gerar QR Code</button>
+    </form>
+</body>
+</html>
+
